@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+.arrow-right
+{
+	width: 0; 
+    height: 0; 
+    border-top: 15px solid transparent; 
+    border-bottom: 11px solid transparent; 
+    border-left: 15px solid gray;
+    float: left;
+}
+.drp-group
+{	
+	top: 54px !important;
+    left: 15px !important;
+	border-radius:0px;
+	width:88.5%;
+	background:#f1f4f7;
+}
+.drp-group>li>a
+{
+	padding: 3px 2px;
+}
+.drp-group>li>a>input[type='text']{
+	margin-left: 0px;
+    padding-left: 0px;
+    width: 100% !important;
+}
+/*======================================add tickket================================*/
+#ticket_form .btn-plus
+{
+    margin-top: 25px;   
+}
+#ticket_form .btn-equal
+{
+    margin-top: 25px; margin-left: 14px;
+}
+.btn-app
+{
+    min-width: 0px !important;
+    padding: 1px 1px !important;
+    margin: 0 0 0px 10px !important;
+    height: 20px !important;
+    border: 0px !important;
+}
+.footerdiv {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+	z-index:9999;
+}
