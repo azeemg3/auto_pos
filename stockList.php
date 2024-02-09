@@ -1,8 +1,6 @@
 ﻿<?php
 require_once'inc.func.php';
-
-$cm->get_header();
-
+$cm->get_header("");
 ?>
 <style type="text/css">
   
@@ -17,11 +15,11 @@ $cm->get_header();
 }
 </style>
 <script>
-document.title='Stock List';
+  document.title='Stock List';
 </script>
-<body onLoad="call_ajax('ajax_call/get_stockList','', 'get_stockList')">
-
-<div class="content-wrapper">
+<body onLoad="call_ajax('ajax_call/get_stockList','form', 'get_stockList')">
+<?php echo $cm->loader() ?>
+<div class="content-wrapper" id="loadpage">
 <section class="content-header" style="border-bottom:1px solid;padding-bottom: 14px;">
           <h1>
             Dashboard
@@ -38,12 +36,33 @@ document.title='Stock List';
   <div class="panel-body">
    <div class="clearfix"></div>
    <div class="table-responsive">
+    <form id="form">
+    <div class="col-md-2">
+      <div class="form-group">
+        <select class="form-control form-control-sm" name="per_page">
+          <?php $cm->show_rec() ?>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <input type="text" name="ser_product" placeholder="Type product Name" class="form-control">
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="form-grroup">
+        <button type="button" onclick="call_ajax('ajax_call/get_stockList','form', 'get_stockList')" class="btn btn-primary"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+    </form>
   <table class="table table-bordered table-striped">
     <thead>
       <tr style="background:#cdcccc; box-shadow:0px 0 1px #777 inset; font-size:12px;">
+        <th>#</th>
         <th>Product Name</th>
         <th>Brand Name</th>
         <th>Quantity</th>
+        <th>Stock Value</th>
       </tr>
     </thead>
     <tbody class="get_stockList"></tbody>

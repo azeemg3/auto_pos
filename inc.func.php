@@ -6,7 +6,7 @@ class crm {
         $servername = 'localhost';
         $username = "root";
         $password = "";
-        $db = "deutech";
+        $db = "auto";
         // Create connection
         $conn = new mysqli($servername, $username, $password, $db);
         // Check connection
@@ -779,8 +779,10 @@ class crm {
         $sql = "SELECT $col AS val FROM $sTable WHERE $sWhere";
         $result = $db->query($sql);
         $row = $result->fetch_assoc();
+		if($row){
         $data = $row['val'];
         return $data;
+		}
     }
 
     function count_val($sTable, $col, $sWhere) {
@@ -863,6 +865,7 @@ class crm {
 
     function show_rec() {
         echo'
+                <option value="10">10</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
                 <option value="200">200</option>
