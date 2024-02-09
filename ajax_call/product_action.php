@@ -16,8 +16,22 @@ if(isset($_POST) && !empty($_POST['product_name']) && !empty($_POST['product_nam
 		$query=$cm->update_array("products",$data, "product_id=".$id."");
 	}
 }
+if(isset($_GET['page'])){
+	$page=$_GET['page'];
+}else{
+	$page=1;
+}
+if(isset($_POST['per_page']) && !empty($_POST['per_page'])){
+	$per_page=$_POST['per_page'];
+}else{
+	$per_page=20;
+}
+$cur_page=$page;
+$page -=1;
+$start=$page*$per_page;
 $fd=""; $count=1;
-$result=$cm->selectData("products", "1 ORDER BY product_id DESC");
+$result=$cm->selectData("products", "1 ORDER BY product_id DESC limit $start, $per_page");
+$total_rec=$cm->count_val("products","product_id","1");
 while($row=$result->fetch_assoc())
 {
 	$fd.='<tr>
@@ -34,5 +48,7 @@ while($row=$result->fetch_assoc())
 		  </tr>
 		';
 }
+$fd.='<tr><td colspan="5">'.$cm->pagination($total_rec,$cur_page,$per_page,"get_products").'</td></tr>';
 echo $query,"~",$fd;
+
 ?>

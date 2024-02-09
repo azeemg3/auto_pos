@@ -728,7 +728,7 @@ class crm {
 
     function selectMultiData($data, $sTable, $sWhere) {
 		$db=$this->db();
-        $sql = " SELECT $data FROM $sTable WHERE $sWhere ";
+        echo $sql = " SELECT $data FROM $sTable WHERE $sWhere ";
         $result = $db->query($sql);
         return $result;
     }
@@ -790,8 +790,10 @@ class crm {
         $sql = "SELECT count($col) AS val FROM $sTable WHERE $sWhere";
         $result =$db->query($sql);
         $row = $result->fetch_assoc();
-        $total_val = $row['val'];
-        return $total_val;
+		if($row['val']){
+        	$total_val = $row['val'];
+        	return $total_val;
+		}
 	}
 
     function login($userName, $password) {
