@@ -5,7 +5,7 @@ $cm->get_header("");
 <script>
 document.title='Transaction A/C';
 </script>
-<body onLoad="call_ajax('ajax_call/product_action','', 'get_products')">
+<body onLoad="call_ajax('ajax_call/product_action','form', 'get_products')">
 <div class="content-wrapper">
 <!--============Modal add new barnds================-->
   <div class="modal fade" id="product" role="dialog">
@@ -92,7 +92,7 @@ document.title='Transaction A/C';
 <div class="panel panel-default">
   <div class="panel-body">
         <div class="clearfix"></div>
-  <form id="form">
+  <form id="product-form">
   <input type="hidden" name="product_id" value="0">
       <div class="col-md-2">
             <div class="form-group">
@@ -133,13 +133,25 @@ document.title='Transaction A/C';
         </div>
         <div class="col-md-2" style="margin-top: 24px;">
           <div class="form-group">
-            <button type="button" class="btn btn-sm btn-primary" onClick="add_products('form')">Submit</button>
+            <button type="button" class="btn btn-sm btn-primary" onClick="add_products('product-form')">Submit</button>
           </div>
         </div>
    </form>
    <div class="clearfix"></div>
    <hr><hr>
    <div class="table-responsive">
+    <form id="form">
+   <div class="col-md-3">
+      <div class="form-group">
+        <input type="text" name="ser_product" placeholder="Type product Name" class="form-control">
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="form-grroup">
+        <button type="button" onclick="call_ajax('ajax_call/product_action','form', 'get_products')" class="btn btn-primary"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+    </form>
   <table class="table table-bordered table-striped">
     <thead>
       <tr style="background:#cdcccc; box-shadow:0px 0 1px #777 inset; font-size:12px;">

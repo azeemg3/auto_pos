@@ -18,7 +18,14 @@ $cm->get_header("");
   document.title='Stock List';
 </script>
 <body onLoad="call_ajax('ajax_call/get_stockList','form', 'get_stockList')">
-<?php echo $cm->loader() ?>
+<?php echo $cm->loader();
+$opening_qty=$cm->u_total("opening_stock","qty","1");
+$purchased_qty=$cm->u_total("stock_details","qty","pi_id!=''");
+$sold_qty=$cm->u_total("stock_details","qty","si_id!=''");
+$rem_qty=$purchased_qty-$sold_qty;
+$avg_price=$cm->u_value("stock_details","avg(rate)","pi_id!=''");
+$total=$rem_qty*$avg_price;
+?>
 <div class="content-wrapper" id="loadpage">
 <section class="content-header" style="border-bottom:1px solid;padding-bottom: 14px;">
           <h1>
@@ -57,6 +64,9 @@ $cm->get_header("");
     </form>
   <table class="table table-bordered table-striped">
     <thead>
+      <tr>
+        <th colspan="5" class="text-center">Total Stock Value is:<?=$total?></th>
+      </tr>
       <tr style="background:#cdcccc; box-shadow:0px 0 1px #777 inset; font-size:12px;">
         <th>#</th>
         <th>Product Name</th>
