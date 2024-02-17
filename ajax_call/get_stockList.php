@@ -56,7 +56,7 @@ WHERE stock_details.product_id =".$rid." GROUP BY products.product_id";
 $result1 =$db->query($query);
 $row1 = $result1->fetch_assoc();
 	$avg_price=$cm->u_value("stock_details","AVG(rate)","product_id=".$rid." AND pi_id!=''");
-	$rq=($row1['pq']??0)-($row1['sq']??0);
+	$rq=(isset($row1['pq'])?$row1['pq']:0)-(isset($row1['sq'])?$row1['sq']:0);
 	//if($rq>0){
 	$fd.='<tr>
 			<td>'.$count.'</td>
@@ -64,7 +64,6 @@ $row1 = $result1->fetch_assoc();
 			<td>N/A</td>
 			<td>'.$rq.'</td>
 			<td>'.($rq)*($avg_price).'</td>
-			<!-- <td>'.($row1['price']??0).'</td>-->
 		  </tr>
 		';
 	//}
