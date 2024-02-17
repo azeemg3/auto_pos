@@ -728,7 +728,7 @@ class crm {
 
     function selectMultiData($data, $sTable, $sWhere) {
 		$db=$this->db();
-        echo $sql = " SELECT $data FROM $sTable WHERE $sWhere ";
+        $sql = " SELECT $data FROM $sTable WHERE $sWhere ";
         $result = $db->query($sql);
         return $result;
     }

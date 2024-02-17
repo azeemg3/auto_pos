@@ -2,6 +2,7 @@
 require_once'../inc.func.php';
 session_start();
 $data[]=""; $id=""; $query="";
+$sWhere="";
 if(isset($_POST) && !empty($_POST['product_name']) && !empty($_POST['product_name']))
 {
 	$data=$_POST;
@@ -15,6 +16,14 @@ if(isset($_POST) && !empty($_POST['product_name']) && !empty($_POST['product_nam
 	{
 		$query=$cm->update_array("products",$data, "product_id=".$id."");
 	}
+}
+if(!empty($_POST['ser_product']))
+{
+	$sWhere="product_name LIKE '%".$_POST['ser_product']."%'";
+}
+else
+{
+	$sWhere="1";
 }
 if(isset($_GET['page'])){
 	$page=$_GET['page'];
@@ -30,8 +39,8 @@ $cur_page=$page;
 $page -=1;
 $start=$page*$per_page;
 $fd=""; $count=1;
-$result=$cm->selectData("products", "1 ORDER BY product_id DESC limit $start, $per_page");
-$total_rec=$cm->count_val("products","product_id","1");
+$result=$cm->selectData("products", "{$sWhere} ORDER BY product_id DESC limit $start, $per_page");
+$total_rec=$cm->count_val("products","product_id","{$sWhere}");
 while($row=$result->fetch_assoc())
 {
 	$fd.='<tr>
