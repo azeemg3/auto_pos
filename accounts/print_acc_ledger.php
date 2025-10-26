@@ -6,7 +6,7 @@ if(isset($_POST['trans_acc_id']) && !empty($_POST['trans_acc_id']))
 {
 	$trans_acc_id=$_POST['trans_acc_id'];
 	$ob_result=$cm->selectData("trans_acc","trans_acc_id=".$trans_acc_id." LIMIT 1");
-	$balance="";
+	$balance=0;
 	$array=array();	
 	$arrayofArray=array();
 	$whereArray=array();
@@ -37,7 +37,7 @@ if(isset($_POST['trans_acc_id']) && !empty($_POST['trans_acc_id']))
 				</tr>
 			';
 	}
-	$bal="";
+	$bal=0;
 	$det=""; $tdr=0; $tcr=0; $tbal=0;
 	$newArray=array();
 	$result=$cm->selectData("trans","{$sWhere}");

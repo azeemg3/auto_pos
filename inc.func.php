@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once'php_classes/dashboardClass.php';
 class crm {
 
@@ -6,13 +6,16 @@ class crm {
         $servername = 'localhost';
         $username = "root";
         $password = "";
-        $db = "deutech";
+        $db = "auto_new";
         // Create connection
         $conn = new mysqli($servername, $username, $password, $db);
         // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
+		$conn->query("SET NAMES utf8mb4");
+		$conn->query("SET CHARACTER SET utf8mb4");
+		$conn->query("SET COLLATION_CONNECTION = 'utf8mb4_unicode_ci'");
         return $conn;
         //$conn->close();
     }
@@ -1261,7 +1264,7 @@ class crm {
 	public function ob($dt_frm, $dt_to, $transacc)
 	{
 		date_default_timezone_set("Asia/Karachi");
-		$ob="";
+		$ob=0;
 		if($this->u_value("trans_acc", "dr_cr", "trans_acc_id=".$transacc."")=='dr')
 		{
 			$ob=$this->u_value("trans_acc", "amount", "trans_acc_id=".$transacc."");

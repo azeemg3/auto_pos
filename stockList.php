@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once'inc.func.php';
 $cm->get_header("");
 ?>
@@ -22,7 +22,7 @@ $cm->get_header("");
 $opening_qty=$cm->u_total("opening_stock","qty","1");
 $purchased_qty=$cm->u_total("stock_details","qty","pi_id!=''");
 $sold_qty=$cm->u_total("stock_details","qty","si_id!=''");
-$rem_qty=$purchased_qty-$sold_qty;
+$rem_qty=$opening_qty+$purchased_qty-$sold_qty;
 $avg_price=$cm->u_value("stock_details","avg(rate)","pi_id!=''");
 $total=$rem_qty*$avg_price;
 ?>

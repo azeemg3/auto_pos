@@ -50,13 +50,13 @@ while($row=$result->fetch_assoc())
             WHEN pi_id > 1 THEN stock_details.qty 
             ELSE 0 
         END
-    ) AS pq
+    ) AS pq,opening_stock.qty
 FROM stock_details,products LEFT JOIN opening_stock on products.product_id=opening_stock.product_id
 WHERE stock_details.product_id =".$rid." GROUP BY products.product_id";
 $result1 =$db->query($query);
 $row1 = $result1->fetch_assoc();
 	$avg_price=$cm->u_value("stock_details","AVG(rate)","product_id=".$rid." AND pi_id!=''");
-	$rq=(isset($row1['pq'])?$row1['pq']:0)-(isset($row1['sq'])?$row1['sq']:0);
+	$rq=($row['qty'])+(isset($row1['pq'])?$row1['pq']:0)-(isset($row1['sq'])?$row1['sq']:0);
 	//if($rq>0){
 	$fd.='<tr>
 			<td>'.$count.'</td>

@@ -34,7 +34,7 @@ if(isset($_POST) && !empty($_POST['vendor_id']) && !empty($_POST['net_total']))
 	$data_trans['status']='approved';
 	$data_trans['narration']='Purchase From: '.$cm->u_value("trans_acc","trans_acc_name", "trans_acc_id=".$_POST['vendor_id']."").'';
 	$data_trans['userId']=$_SESSION['sessionId'];
-	$cm->update_array("trans", $data_trans, "trans_code=".$trans_code." AND dr_cr='cr' vt='P_V'");
+	$cm->update_array("trans", $data_trans, "trans_code=".$trans_code." AND dr_cr='cr' AND vt='P_V'");
 	// dr to vendor when paid amount to vendor
 	if(isset($_POST['paid']) && !empty($_POST['vendor_id']))
 	{

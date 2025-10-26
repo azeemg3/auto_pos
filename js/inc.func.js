@@ -609,10 +609,12 @@ function edit_opeining_stock(id)
 			$("#opening_stock input[name$='stock_id']").val(data.stock_id);
 			$("#opening_stock input[name$='rate']").val(data.rate);
 			$("#opening_stock input[name$='qty']").val(data.qty);
+			$("#opening_stock select[name~='product_id']").val(data.product_id);
 	//console.log($("#opening_stock select[name$='product_id']").val(data.product_id).prop("selected",true));
 	//$('#opening_stock .select2 option:eq(1)').prop('selected', true)
-	$('.select2 option:eq('+data.product_id+')').attr('selected', 'selected');
-	$("#opening_stock").find(".select2-selection__rendered").text($('.select2 option:eq('+data.product_id+')').text())
+	// $('.select2 option:eq('+data.product_id+')').attr('selected', 'selected');
+	// $("#opening_stock").find(".select2-selection__rendered").text($('.select2 option:eq('+data.product_id+')').text())
+			$(".select2").select2();
 		}
 	});
 }
