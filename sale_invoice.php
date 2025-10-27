@@ -67,7 +67,7 @@ $cm->get_header("");
                 <label>Select Customer</label>
                 <select class="form-control input-sm select2" id="client_id" name="client_id" onchange="rem_balance(this.value)">
                   <option value="">Select Customer</option>
-                  <?php echo $cm->all_clients(); ?>
+                  <?php echo $cm->all_clients(73); ?>
                 </select>
               </div>
             </div>

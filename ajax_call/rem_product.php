@@ -4,7 +4,8 @@ if (isset($_GET['product_id']) && !empty($_GET['product_id'])) {
 	$product_id = $_GET['product_id'];
 	if (isset($_GET['client_id'])) {
 		$client_id = $_GET['client_id'];
-		$pv=$cm->u_value('sale_invoice','(SELECT rate FROM stock_details WHERE s_id=sale_invoice.s_id and product_id='.$product_id.' LIMIT 1)','sale_invoice.client_id='.$client_id.' ORDER BY s_id DESC LIMIT 1');
+		$pv=$cm->u_value('stock_details sd JOIN sale_invoice si ON sd.si_id = si.s_id','sd.rate','si.client_id='.$client_id.' 
+		AND sd.product_id='.$product_id.' ORDER BY s_id DESC LIMIT 1');
 	}else{
 		$pv=0;
 	}
@@ -16,6 +17,6 @@ if (isset($_GET['product_id']) && !empty($_GET['product_id'])) {
 	if ($rq > 0) {
 		echo "Rem Qty:" . $rq.' ('.$pv.')'.'~'.$pv;
 	} else {
-		echo 'No Quantity'.'~'.$pv;
+		echo 'No Quantity ('.$pv.')'.'~'.$pv;
 	}
 }
